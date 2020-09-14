@@ -92,6 +92,6 @@ router.get('**', (req, res) => {
 	res.status(404).send(JSON.stringify(req.params));
 });
 
-app.get('/', router);
+app.get('/**', router);
 
 export const api = functions.https.onRequest(app);
