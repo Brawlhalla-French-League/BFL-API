@@ -3,9 +3,12 @@ import * as express from "express";
 import { createClient } from "contentful";
 import { Entry, EntryFields, Asset } from "contentful";
 import { Document } from "@contentful/rich-text-types";
+import * as cors from "cors";
 
 const app = express();
 const router = express.Router();
+
+app.use(cors({ origin: true }));
 
 const { space_id, access_token } = functions.config().contentful;
 
