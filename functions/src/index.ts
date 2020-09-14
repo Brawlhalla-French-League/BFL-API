@@ -84,14 +84,6 @@ router.get('/structures', (req, res) => {
 	});
 });
 
-router.get('/**', (req, res) => {
-	res.status(404).send('404 Not Found!');
-});
-
-router.get('**', (req, res) => {
-	res.status(404).send(JSON.stringify(req.params));
-});
-
 app.get('/**', router);
 
 export const api = functions.https.onRequest(app);
