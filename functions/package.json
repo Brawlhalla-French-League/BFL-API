@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@contentful/rich-text-types": "^14.1.1",
+    "@types/cors": "^2.8.7",
     "@types/express": "^4.17.8",
     "firebase-functions-test": "^0.2.0",
     "typescript": "^3.8.0"
