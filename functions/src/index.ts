@@ -6,7 +6,6 @@ import { Document } from '@contentful/rich-text-types';
 import * as cors from 'cors';
 
 const app = express();
-const router = express.Router();
 
 app.use(cors({ origin: true }));
 
@@ -60,17 +59,17 @@ export const getBlogPost = (slug: string): Promise<BlogPostEntry> =>
 		})
 		.then((res) => res.items[0]);
 
-router.get('/', (req, res) => {
+app.get('/', (req, res) => {
 	res.status(200).send('BFL API');
 });
 
-router.get('/blog', (req, res) => {
+app.get('/blog', (req, res) => {
 	getBlogPosts().then((data) => {
 		res.status(200).send(data);
 	});
 });
 
-router.get('/blog/:slug', (req, res) => {
+app.get('/blog/:slug', (req, res) => {
 	const { slug } = req.params;
 
 	getBlogPost(slug).then((data) => {
@@ -78,12 +77,10 @@ router.get('/blog/:slug', (req, res) => {
 	});
 });
 
-router.get('/structures', (req, res) => {
+app.get('/structures', (req, res) => {
 	getStructures().then((data) => {
 		res.status(200).send(data);
 	});
 });
-
-app.get('/**', router);
 
 export const api = functions.https.onRequest(app);
