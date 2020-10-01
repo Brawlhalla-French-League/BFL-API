@@ -59,17 +59,17 @@ export const getBlogPost = (slug: string): Promise<BlogPostEntry> =>
 		})
 		.then((res) => res.items[0]);
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
 	res.status(200).send('BFL API');
 });
 
-app.get('/blog', (req, res) => {
+app.get('/api/blog', (req, res) => {
 	getBlogPosts().then((data) => {
 		res.status(200).send(data);
 	});
 });
 
-app.get('/blog/:slug', (req, res) => {
+app.get('/api/blog/:slug', (req, res) => {
 	const { slug } = req.params;
 
 	getBlogPost(slug).then((data) => {
@@ -77,7 +77,7 @@ app.get('/blog/:slug', (req, res) => {
 	});
 });
 
-app.get('/structures', (req, res) => {
+app.get('/api/structures', (req, res) => {
 	getStructures().then((data) => {
 		res.status(200).send(data);
 	});
